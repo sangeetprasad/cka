@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: "2020-06-10T06:17:38Z"
+  generation: 1
+  labels:
+    app: nginx
+  name: kplabs-deployment-lab
+  namespace: default
+  resourceVersion: "12141"
+  selfLink: /apis/apps/v1/namespaces/default/deployments/kplabs-deployment-lab
+  uid: 158ca34b-aae2-11ea-b1f8-02422f940e72
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 3
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: nginx
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - image: nginx
+        imagePullPolicy: Always
+        name: kplabs-deployment-lab
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status: {}
